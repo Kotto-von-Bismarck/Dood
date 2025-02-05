@@ -72,14 +72,73 @@ window.addEventListener('DOMContentLoaded', () => {
             wrapper.append(answersField);
         }
     }
+
+    class ResultCard {
+        static parent = document.querySelector('.baseWrapper');
+        
+        constructor(data) {
+            this.frame = data.frame;
+            this.title = data.title;         
+        }
+
+        render() {
+            const wrapper = document.createElement('div');
+
+            wrapper.classList.add('wrapper');
+
+            wrapper.innerHTML = `
+                <div class="filmFrame">
+                    <img src="img/${this.frame}" alt="frame">
+                </div>
+                <h1 class="filmFrame__title">${this.title}</h1>
+                <div class="filmFrame__answersField" style="jus">
+                    <button class="answerBtn hov">
+                        Верно ${trueAnswers} из ${totalAnswers} отвеченных
+                    </button>
+                    <button class="answerBtn" onclick="window.location.reload()">
+                        Пройти ещё разок
+                    </button>
+                </div>
+            `;
+            ResultCard.parent.append(wrapper);
+        }
+    }
     
     function createQuestion(data) {
         QuestionCard.resetParent();
-        new QuestionCard(data).render();
+        
+        console.log(`верно ${trueAnswers} из ${totalAnswers} отвеченных`);
 
-        baseWrapper.style.cssText = 'opacity: 1;'
+        if (!data) {
+            if (trueAnswers >= 13) {
+                new ResultCard(results[0]).render();
+            } else if (trueAnswers < 13 && trueAnswers > 7) {
+                new ResultCard(results[1]).render();
+            } else if (trueAnswers <= 7) {
+                new ResultCard(results[2]).render();
+            }
+
+            baseWrapper.style.cssText = 'opacity: 1;'
+        } else {
+            new QuestionCard(data).render();
+            baseWrapper.style.cssText = 'opacity: 1;'
+        }
     }
 
+    const results = [
+        {
+            frame: 'test4.png',
+            title: 'Да ты просто Эль-Чувачино!'
+        },
+        {
+            frame: 'test.jpg',
+            title: 'Ништяк!'
+        },
+        {
+            frame: 'test3.png',
+            title: 'Чувак, ты точно смотрел этот фильм?'
+        },
+    ]
 
     const questionsBank = [
         {
@@ -90,7 +149,7 @@ window.addEventListener('DOMContentLoaded', () => {
         {
             frame: 'test2.jpg',
             question: 'Кто позвонил Чуваку в этой сцене?',
-            answers: [['Мод', 'true'], ['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Уолтер', 'false']]
+            answers: [['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Мод', 'true'], ['Уолтер', 'false']]
         },
 
 
@@ -98,19 +157,69 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
         {
-            frame: 'test3.png',
+            frame: 'test.jpg',
+            question: 'Каким коктейлем наслаждается Чувак?',
+            answers: [['белый русский', 'true'], ['синий русский', 'false'], ['пина-колада', 'false'], ['виски сауэр', 'false']]
+        },
+        {
+            frame: 'test2.jpg',
             question: 'Кто позвонил Чуваку в этой сцене?',
             answers: [['Мод', 'true'], ['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Уолтер', 'false']]
         },
         {
-            frame: 'test4.png',
+            frame: 'test.jpg',
+            question: 'Каким коктейлем наслаждается Чувак?',
+            answers: [['белый русский', 'true'], ['синий русский', 'false'], ['пина-колада', 'false'], ['виски сауэр', 'false']]
+        },
+        {
+            frame: 'test2.jpg',
             question: 'Кто позвонил Чуваку в этой сцене?',
             answers: [['Мод', 'true'], ['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Уолтер', 'false']]
         },
         {
-            frame: 'test1.png',
+            frame: 'test.jpg',
+            question: 'Каким коктейлем наслаждается Чувак?',
+            answers: [['белый русский', 'true'], ['синий русский', 'false'], ['пина-колада', 'false'], ['виски сауэр', 'false']]
+        },
+        {
+            frame: 'test2.jpg',
             question: 'Кто позвонил Чуваку в этой сцене?',
             answers: [['Мод', 'true'], ['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Уолтер', 'false']]
+        },
+        {
+            frame: 'test.jpg',
+            question: 'Каким коктейлем наслаждается Чувак?',
+            answers: [['белый русский', 'true'], ['синий русский', 'false'], ['пина-колада', 'false'], ['виски сауэр', 'false']]
+        },
+        {
+            frame: 'test2.jpg',
+            question: 'Кто позвонил Чуваку в этой сцене?',
+            answers: [['Мод', 'true'], ['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Уолтер', 'false']]
+        },
+        {
+            frame: 'test.jpg',
+            question: 'Каким коктейлем наслаждается Чувак?',
+            answers: [['белый русский', 'true'], ['синий русский', 'false'], ['пина-колада', 'false'], ['виски сауэр', 'false']]
+        },
+        {
+            frame: 'test2.jpg',
+            question: 'Кто позвонил Чуваку в этой сцене?',
+            answers: [['Мод', 'true'], ['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Уолтер', 'false']]
+        },
+        {
+            frame: 'test.jpg',
+            question: 'Каким коктейлем наслаждается Чувак?',
+            answers: [['белый русский', 'true'], ['синий русский', 'false'], ['пина-колада', 'false'], ['виски сауэр', 'false']]
+        },
+        {
+            frame: 'test2.jpg',
+            question: 'Кто позвонил Чуваку в этой сцене?',
+            answers: [['Мод', 'true'], ['Донни', 'false'], ['Дж. Трихорн', 'false'], ['Уолтер', 'false']]
+        },
+        {
+            frame: 'test.jpg',
+            question: 'Каким коктейлем наслаждается Чувак?',
+            answers: [['белый русский', 'true'], ['синий русский', 'false'], ['пина-колада', 'false'], ['виски сауэр', 'false']]
         }
     ];
 
