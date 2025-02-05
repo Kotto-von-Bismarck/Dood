@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Magneto";
+    src: url("../fonts/Magneto.otf") format('otf'),
+         url("../fonts/Magneto.ttf") format('ttf'),
+         url("../fonts/Magneto.woff") format('woff');
+    font-weight: 400;
+    font-style: normal;
+    display: swap;
+}
+@font-face {
+    font-family: "West";
+    src: url("../fonts/West.otf") format('otf'),
+         url("../fonts/West.ttf") format('ttf'),
+         url("../fonts/West.woff") format('woff');
+    font-weight: 400;
+    font-style: normal;
+    display: swap;
+}
